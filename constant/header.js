@@ -1,3 +1,10 @@
+import { MdOutlineAddCard, MdOutlineLibraryBooks } from "react-icons/md";
+import { FaMobileAlt } from "react-icons/fa";
+import { IoBookmarksOutline } from "react-icons/io5";
+import { AiOutlinePercentage } from "react-icons/ai";
+import { LuClipboardList, LuUserCog } from "react-icons/lu";
+import { CiCircleQuestion } from "react-icons/ci";
+
 export const booksCategories = [
   {
     title: "ادبیات",
@@ -127,4 +134,24 @@ export const mobileToMenuHeader = [
   { label: "نشر الکترونیک و انتشار کتاب", href: "/publishing" },
   { label: "فرصت‌های شغلی", href: "/jobs" },
   { label: "ورود / ثبت نام", href: "/login" },
+];
+
+export const menuItems = [
+  { id: 2, title: "کتابخانه من", subtitle: "", icon: MdOutlineLibraryBooks },
+  { id: 3, title: "نشان شده‌ها", subtitle: "", icon: IoBookmarksOutline },
+  {
+    id: 4,
+    title: "کد تخفیف و امتیاز‌ها",
+    subtitle: "",
+    icon: AiOutlinePercentage,
+  },
+  { id: 5, title: "لیست تراکنش‌ها", subtitle: "", icon: LuClipboardList },
+  { id: 6, title: "مدیریت دستگاه‌ها", subtitle: "", icon: FaMobileAlt },
+  { id: 7, title: "ویرایش اطلاعات کاربری", subtitle: "", icon: LuUserCog },
+  {
+    id: 9,
+    title: "راهنمایی و پشتیبانی کاربران",
+    subtitle: "",
+    icon: CiCircleQuestion,
+  },
 ];

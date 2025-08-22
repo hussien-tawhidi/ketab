@@ -1,33 +1,26 @@
-import { Schema, Document, models, model } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
-const OtpSchema = new Schema(
+const otpSchema = new Schema(
   {
-    phone: {
-      type: String,
-      required: [true, "انتخاب نام برای دسته‌بندی لازم است"],
-      trim: true,
+    contact: {
+      type: String, // phone or email
+      required: true,
+      index: true,
     },
     code: {
       type: String,
-      required: [true, "وارد کردن کد برای دسته‌بندی لازم است"],
-      trim: true,
-      unique: true,
-    },
-    kind: {
-      type: Number,
-      default: 0, // e.g., 0 = default, 1 = featured, etc.
+      required: true,
     },
     expiresAt: {
       type: Date,
-      required: false,
+      required: true,
+    },
+    verified: {
+      type: Boolean,
+      default: false,
     },
   },
-  {
-    timestamps: true, // adds createdAt & updatedAt
-  }
+  { timestamps: true }
 );
 
-// Avoid model overwrite error in dev
-const Otp = models.Otp || model<Otp>("Otp", OtpSchema);
-
-export default Otp;
+export default mongoose.models.Otp || mongoose.model("Otp", otpSchema);

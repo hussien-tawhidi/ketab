@@ -1,7 +1,5 @@
 import { iranYekan } from "@/lib/font";
 import "./globals.css";
-import Header from "@/components/header/Header";
-
 // app/layout.js
 
 export const metadata = {
@@ -37,8 +35,9 @@ export default function RootLayout({ children }) {
     <html lang='en' dir='rtl'>
       <body className={`${iranYekan.variable} antialiased`}>
         <div className='bg-ketab-bg'>
-          <Header />
-          <div className=''>{children}</div>
+        
+            <div className=''>{children}</div>
+        
         </div>
       </body>
     </html>

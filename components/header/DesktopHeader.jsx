@@ -5,11 +5,17 @@ import Image from "next/image";
 import Search from "./search/Search";
 import { FaRegCircleUser } from "react-icons/fa6";
 import BottomHeader from "./BottomHeader";
+import { useRouter } from "next/navigation";
+import { useLoggedUser } from "@/hooks/useLoggedUser";
+import { MdKeyboardArrowDown } from "react-icons/md";
+import UserMenu from "./UserMenu";
 
 export default function DesktopHeader() {
   const [showMenu, setShowMenu] = useState(true);
+  const { user, loading } = useLoggedUser();
   const [lastScrollY, setLastScrollY] = useState(0);
 
+  const router = useRouter();
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -44,12 +50,18 @@ export default function DesktopHeader() {
           <div className='w-full'>
             <Search />
           </div>
-          <div className='whitespace-nowrap'>
-            <button className='p-3 rounded-lg border flex items-center gap-1 border-ketab-white/10 hover:bg-ketab-green/10 transition'>
-              <FaRegCircleUser className='text-ketab-gray' />
-              ورود / ثبت نام
-            </button>
-          </div>
+          {user ? (
+            <UserMenu user={user}/>
+          ) : (
+            <div
+              className='whitespace-nowrap'
+              onClick={() => router.push("/users/signin")}>
+              <button className='p-3 rounded-lg border flex items-center gap-1 border-ketab-white/10 transition'>
+                <FaRegCircleUser className='text-ketab-gray' />
+                ورود / ثبت نام
+              </button>
+            </div>
+          )}
         </div>
 
         {/* DesktopHeader with smooth fade+slide */}
