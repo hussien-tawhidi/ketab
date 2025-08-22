@@ -19,6 +19,33 @@
   --color-ketab-orange: #d14900;
 }
 
+/* ✅ Keyframes must be defined outside @theme */
+@keyframes float {
+  0% {
+    transform: translateY(-70px);
+  }
+  50% {
+    transform: translateY(-19px);
+  }
+  100% {
+    transform: translateY(-70px);
+  }
+}
+@keyframes fadeDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* ✅ Register animation as Tailwind utility */
+@utility animate-float {
+  animation: float 3s infinite;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: var(--color-ketab-bg);

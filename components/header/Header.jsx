@@ -1,10 +1,9 @@
-import React from "react";
+"use client";
 import DesktopHeader from "./DesktopHeader";
-
 import MobileTopHeader from "./mobile/MobileTopHeader";
 import MobileBottomHeader from "./mobile/MobileBottomHeader";
-
 export default function Header() {
+
   return (
     <div>
       <div className='md:hidden block'>
