@@ -16,14 +16,15 @@ import {
   BiCategory,
   BiBox,
 } from "react-icons/bi";
+import { CiViewList } from "react-icons/ci";
 
 export const general = [
   {
-    name: "محصولات",
+    name: "کتاب ها",
     icon: BiCube,
     subMenu: [
-      { name: "لیست محصولات", icon: BiListUl, link: "/admin/products" },
-      { name: "ایجاد محصول", icon: BiPlus, link: "/admin/products/create" },
+      { name: "لیست کتاب ها", icon: BiListUl, link: "/admin/books" },
+      { name: "ایجاد محصول", icon: BiPlus, link: "/admin/books/create" },
     ],
   },
   {
@@ -37,33 +38,22 @@ export const general = [
   {
     name: "انبار",
     icon: BiArchiveIn,
-    subMenu: [
-      { name: "گزارش انبار", icon: BiBox, link: "/admin/inventory" },
-      {
-        name: "سفارشات دریافت شده",
-        icon: BiListUl,
-        link: "/admin/inventory/received-orders",
-      },
-    ],
+    subMenu: [{ name: "گزارش انبار", icon: BiBox, link: "/admin/inventory" }],
   },
   {
     name: "سفارشات",
     icon: BiShoppingBag,
-    subMenu: [{ name: "همه سفارش ها", icon: BiPlus, link: "/admin/orders" }],
-  },
-  {
-    name: "برگشتی ها",
-    icon: FiPackage,
     subMenu: [
+      { name: "همه سفارش ها", icon: CiViewList, link: "/admin/orders" },
       {
         name: "درخواستی ها",
         icon: TbArrowsExchange,
-        link: "/admin/refund-request",
+        link: "/admin/orders/refund-request",
       },
       {
         name: "درخواست های جاری",
         icon: RiRefund2Fill,
-        link: "/admin/refund-processing",
+        link: "/admin/orders/refund-processing",
       },
     ],
   },
@@ -88,21 +78,21 @@ export const userProfile = [
     name: "نقش‌ها",
     icon: BiShield,
     subMenu: [
-      { name: "لیست نقش‌ها", icon: BiListUl, link: "/roles" },
-      { name: "ایجاد نقش جدید", icon: BiPlus, link: "/roles/create" },
+      { name: "لیست نقش‌ها", icon: BiListUl, link: "/admin/roles" },
+      { name: "ایجاد نقش جدید", icon: BiPlus, link: "/admin/roles/create" },
     ],
   },
   {
     name: "دسترسی‌ها",
     icon: BiKey,
     subMenu: [
-      { name: "مجوزهای سیستم", icon: BiListUl, link: "/permissions" },
-      { name: "تخصیص دسترسی", icon: BiKey, link: "/permissions/assign" },
+      { name: "مجوزهای سیستم", icon: BiListUl, link: "/admin/permissions" },
+      { name: "تخصیص دسترسی", icon: BiKey, link: "/admin/permissions/assign" },
     ],
   },
   {
     name: "مشتریان",
     icon: BiUser,
-    subMenu: [{ name: "لیست مشتریان", icon: BiListUl, link: "/customers" }],
+    subMenu: [{ name: "لیست مشتریان", icon: BiListUl, link: "/admin/customers" }],
   },
 ];
