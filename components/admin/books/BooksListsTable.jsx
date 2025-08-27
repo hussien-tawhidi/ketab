@@ -58,7 +58,7 @@ export default function BooksListsTable({
 
               {/* Price */}
               <td className='px-4 py-1 font-semibold'>
-                {book.price.toLocaleString()}{" "}
+                {book.price.toLocaleString()}
                 <span className='text-xs'>تومان</span>
               </td>
 
