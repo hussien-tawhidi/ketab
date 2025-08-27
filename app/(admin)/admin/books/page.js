@@ -1,7 +1,5 @@
-import React from 'react'
+import Books from "@/components/admin/books/Books";
 
 export default function booksPage() {
-  return (
-    <div>booksPage</div>
-  )
+  return <Books />;
 }

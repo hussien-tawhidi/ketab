@@ -57,3 +57,12 @@ export const adminOrdersOptionFilter = [
   { value: "در حال پردازش", label: "در حال پردازش" },
   { value: "لغو شده", label: "لغو شده ها" },
 ];
+
+export const bookListTabelHeader = [
+  { key: "image", label: "تصویر" },
+  { key: "title", label: "عنوان" },
+  { key: "author", label: "نویسنده" },
+  { key: "categories", label: "دسته‌بندی‌ها" },
+  { key: "price", label: "قیمت" },
+  { key: "actions", label: "عملیات" },
+];
