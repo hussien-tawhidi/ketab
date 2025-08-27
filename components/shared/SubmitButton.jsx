@@ -1,17 +1,16 @@
 "use client";
 
-export default function SubmitButton({ label, loading = false, onClick, indentifier }) {
+export default function SubmitButton({ label, loading = false, onClick }) {
   return (
     <button
       type='submit'
       onClick={onClick}
       disabled={loading}
       className={`w-full py-2 rounded font-bold items-center justify-center transition-colors
-        ${indentifier ? "flex" : "hidden"}
         ${
           loading
-            ? "bg-gray-500 text-gray-300 cursor-not-allowed"
-            : "bg-green-600 hover:bg-green-700 text-white"
+            ? "cursor-not-allowed"
+            : "border border-ketab-green text-ketab-green"
         }`}>
       {loading ? (
         <div className='flex items-center gap-2'>

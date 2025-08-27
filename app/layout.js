@@ -1,5 +1,6 @@
 import { iranYekan } from "@/lib/font";
 import "./globals.css";
+import { ToastProvider } from "@/components/ToastContext";
 // app/layout.js
 
 export const metadata = {
@@ -35,9 +36,10 @@ export default function RootLayout({ children }) {
     <html lang='en' dir='rtl'>
       <body className={`${iranYekan.variable} antialiased`}>
         <div className='bg-ketab-bg'>
-        
-            <div className=''>{children}</div>
-        
+          <ToastProvider >
+
+          <div className=''>{children}</div>
+          </ToastProvider>
         </div>
       </body>
     </html>

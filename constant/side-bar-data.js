@@ -24,7 +24,7 @@ export const general = [
     icon: BiCube,
     subMenu: [
       { name: "لیست کتاب ها", icon: BiListUl, link: "/admin/books" },
-      { name: "ایجاد محصول", icon: BiPlus, link: "/admin/books/create" },
+      { name: "افزودن کتاب", icon: BiPlus, link: "/admin/books/create" },
     ],
   },
   {
@@ -93,6 +93,8 @@ export const userProfile = [
   {
     name: "مشتریان",
     icon: BiUser,
-    subMenu: [{ name: "لیست مشتریان", icon: BiListUl, link: "/admin/customers" }],
+    subMenu: [
+      { name: "لیست مشتریان", icon: BiListUl, link: "/admin/customers" },
+    ],
   },
 ];

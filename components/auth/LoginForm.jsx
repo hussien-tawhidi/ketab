@@ -56,11 +56,11 @@ export default function LoginForm() {
       setLoading(false);
     }
   };
- useEffect(() => {
-   if (user) {
-     router.push("/account");
-   }
- }, [user, router]);
+  useEffect(() => {
+    if (user) {
+      router.push("/account");
+    }
+  }, [user, router]);
   return (
     <div className='min-h-screen flex items-center justify-center bg-ketab-bg text-ketab-white'>
       <div className='w-full max-w-sm pt-2 rounded-lg text-center'>
@@ -103,11 +103,12 @@ export default function LoginForm() {
                 error={error}
                 setStep={step}
               />
-              <SubmitButton
-                label={loading ? "در حال ارسال..." : "ورود به کتابراه"}
-                indentifier={identifier}
-                loading={loading}
-              />
+              <div className={identifier ? "flex" : "hidden"}>
+                <SubmitButton
+                  label={loading ? "در حال ارسال..." : "ورود به کتابراه"}
+                  loading={loading}
+                />
+              </div>
             </form>
 
             <p className='mt-6 text-[12px] text-ketab-gray'>

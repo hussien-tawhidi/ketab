@@ -14,6 +14,7 @@ export default function Input({
   onBlur,
   mobile,
   success,
+  onKeyDown,
 }) {
   const [isFocused, setIsFocused] = useState(false);
 
@@ -29,6 +30,7 @@ export default function Input({
         onChange={onChange}
         placeholder={placeholder}
         autoFocus={mobile}
+        onKeyDown={onKeyDown}
         onFocus={(e) => {
           setIsFocused(true);
           onFocus?.(e);

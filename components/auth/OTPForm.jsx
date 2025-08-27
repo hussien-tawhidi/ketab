@@ -51,17 +51,16 @@ export default function OTPForm({ identifier, setStep, onSuccess, onError }) {
       if (res.data?.token) {
         localStorage.setItem("token", res.data.token);
         setSuccessMsg("ورود موفقیت‌آمیز بود");
-        setErrorMsg("")
+        setErrorMsg("");
         if (onSuccess) onSuccess(res.data);
       }
     } catch (err) {
       const message = err?.response?.data?.message || "خطا در تایید کد.";
-      setSuccessMsg("")
+      setSuccessMsg("");
       setErrorMsg(message);
       if (onError) onError(message);
     } finally {
       setLoading(false);
-      
     }
   };
 
@@ -136,10 +135,11 @@ export default function OTPForm({ identifier, setStep, onSuccess, onError }) {
             ? "ویرایش شماره"
             : "ویرایش ایمیل"}
         </button>
-        <SubmitButton
-          label={loading ? "در حال تایید..." : "تایید کد"}
-          indentifier={identifier}
-        />
+        <div className={identifier ? "flex" : "hidden"}>
+          <SubmitButton
+            label={loading ? "در حال تایید..." : "تایید کد"}
+          />
+        </div>
       </div>
 
       {/* Floating Blob Animation */}
