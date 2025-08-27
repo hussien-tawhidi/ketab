@@ -1,8 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { RiDeleteBin7Line } from "react-icons/ri";
-import { TbDatabaseEdit } from "react-icons/tb";
+import EditActionBtn from "../EditActionBtn";
+import DeleteActionBtn from "../DeleteActionBtn";
 
 export default function BooksListsTable({
   books,
@@ -58,24 +58,23 @@ export default function BooksListsTable({
 
               {/* Price */}
               <td className='px-4 py-1 font-semibold'>
-                {book.price.toLocaleString()}{" "}
+                {book.price.toLocaleString()}
                 <span className='text-xs'>تومان</span>
               </td>
 
               {/* Actions */}
-              <td className='px-4 py-1 gap-2'>
-                <button
-                  onClick={() => handleDelete(book?._id)}
-                  className='px-2 py-1 border border-ketab-orange ml-2 rounded-md text-ketab-orange hover:bg-ketab-orange/10 transition'
-                  title='حذف'>
-                  <RiDeleteBin7Line size={18} />
-                </button>
-                <button
-                  onClick={() => router.push(`/admin/books/${book._id}`)}
-                  className='px-2 py-1 rounded-md hover:bg-ketab-gray/10 border border-ketab-gray transition'
-                  title='ویرایش'>
-                  <TbDatabaseEdit size={18} />
-                </button>
+              <td className='px-4 py-1'>
+                <div className='items-center flex gap-2'>
+                  <EditActionBtn
+                    onEdit={() => router.push(`/admin/books/${book._id}`)}
+                    text='ویرایش'
+                  />
+                  <DeleteActionBtn
+                    onDelete={() => handleDelete(book?._id)}
+                    text='حذف'
+                    deletingText='در حال حذف...'
+                  />
+                </div>
               </td>
             </tr>
           ))}
