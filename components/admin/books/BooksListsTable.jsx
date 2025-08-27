@@ -1,8 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import EditActionBtn from "../EditActionBtn";
-import DeleteActionBtn from "../DeleteActionBtn";
+import EditActionBtn from "../../shared/EditActionBtn";
+import DeleteActionBtn from "../../shared/DeleteActionBtn";
 
 export default function BooksListsTable({
   books,
