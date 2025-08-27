@@ -7,8 +7,6 @@ import { TbDatabaseEdit } from "react-icons/tb";
 export default function BooksListsTable({
   books,
   bookListTabelHeader,
-  sortConfig,
-  onSort,
   handleDelete,
 }) {
   const router = useRouter();
@@ -20,14 +18,8 @@ export default function BooksListsTable({
             {bookListTabelHeader.map((header) => (
               <th
                 key={header.key}
-                onClick={() => onSort(header.key)}
-                className='py-3 px-4 text-right font-medium whitespace-nowrap cursor-pointer select-none'>
+                className='py-3 px-4 text-right font-medium whitespace-nowrap select-none'>
                 {header.label}
-                {sortConfig?.key === header.key && (
-                  <span className='ml-1'>
-                    {sortConfig.direction === "asc" ? "↑" : "↓"}
-                  </span>
-                )}
               </th>
             ))}
           </tr>
