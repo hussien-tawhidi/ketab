@@ -1,7 +1,10 @@
-import React from 'react'
+import Categories from "@/components/admin/categories/Categories";
 
 export default function bookCategoriesPage() {
+ 
   return (
-    <div>bookCategoriesPage</div>
-  )
+    <div>
+      <Categories />
+    </div>
+  );
 }
