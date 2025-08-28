@@ -66,3 +66,10 @@ export const bookListTabelHeader = [
   { key: "price", label: "قیمت" },
   { key: "actions", label: "عملیات" },
 ];
+
+export const categoriesListTabelHeader = [
+  { key: "name", label: "نام" },
+  { key: "status", label: "وضعیت" },
+  { key: "createdAt", label: "زمان ساخت" },
+  { key: "action", label: "عملیات" },
+];

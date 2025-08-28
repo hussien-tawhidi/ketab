@@ -2,6 +2,7 @@ import { dbConnect } from "@/lib/db";
 import { saveUploadedFile } from "@/lib/uploadImage";
 import Book from "@/model/Book";
 import { NextResponse } from "next/server";
+
 function generateSlug(text) {
   return text
     .toString()
@@ -13,6 +14,7 @@ function generateSlug(text) {
     .replace(/\s+/g, "-")
     .replace(/-+/g, "-");
 }
+
 export async function POST(req) {
   try {
     await dbConnect();
