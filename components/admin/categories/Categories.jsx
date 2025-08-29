@@ -50,7 +50,7 @@ export default function Categories() {
   }, []);
 
   return (
-    <div className='pt-10'>
+    <div className='pt-10 overflow-hidden px-10'>
       <AddBtn route={"/admin/categories/create"} title='افزودن دسته بندی' />
 
       {loading ? (

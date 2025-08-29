@@ -10,6 +10,7 @@ export default function BooksListsTable({
   handleDelete,
 }) {
   const router = useRouter();
+
   return (
     <div className='overflow-x-auto'>
       <table className='min-w-full shadow-md rounded-xl overflow-hidden'>
@@ -26,7 +27,7 @@ export default function BooksListsTable({
         </thead>
 
         <tbody className='text-ketab-gray text-sm'>
-          {books.map((book, idx) => (
+          {books.map((book) => (
             <tr
               key={book._id}
               className={`transition duration-150 border-b border-ketab-gray/20`}>
