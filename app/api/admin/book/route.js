@@ -48,8 +48,7 @@ export async function POST(req) {
       // coverImageBase64 = `data:${coverImageFile.type};base64,${buffer.toString(
       //   "base64"
       // )}`;
-     coverImageBase64 = await saveUploadedFile(coverImageFile);
-      
+      coverImageBase64 = await saveUploadedFile(coverImageFile);
     }
     const slug = generateSlug(title);
     // Save to MongoDB

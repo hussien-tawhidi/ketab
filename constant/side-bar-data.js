@@ -36,11 +36,6 @@ export const general = [
     ],
   },
   {
-    name: "انبار",
-    icon: BiArchiveIn,
-    subMenu: [{ name: "گزارش انبار", icon: BiBox, link: "/admin/inventory" }],
-  },
-  {
     name: "سفارشات",
     icon: BiShoppingBag,
     subMenu: [
