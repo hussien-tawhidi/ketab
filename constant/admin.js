@@ -49,6 +49,16 @@ export const orders = [
     paymentType: "کارت بانکی",
     status: "در حال پردازش",
   },
+  {
+    id: "#BK86bb",
+    date: "۲۹ فروردین ۱۴۰۳",
+    product: "کتاب بینوایان",
+    customerName: "ویلیام کوهستانی",
+    phone: "۰۹۱۲۳۴۵۶۷۸۹",
+    address: "تبریز، خیابان ولیعصر",
+    paymentType: "کارت بانکی",
+    status: "درخواست بازگشت",
+  },
 ];
 
 export const adminOrdersOptionFilter = [
@@ -73,3 +83,11 @@ export const categoriesListTabelHeader = [
   { key: "createdAt", label: "زمان ساخت" },
   { key: "action", label: "عملیات" },
 ];
+
+// export const ordersTableHeader = [
+//   { key: "id", label: "شناسه" },
+//   { key: "payamentMethod", label: "نحوه پرداخت" },
+//   { key: "status", label: "وضعیت" },
+//   { key: "total", label: "قیمت کل" },
+//   { key: "action", label: "عملیات" },
+// ];

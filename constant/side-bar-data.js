@@ -41,7 +41,7 @@ export const general = [
     subMenu: [
       { name: "همه سفارش ها", icon: CiViewList, link: "/admin/orders" },
       {
-        name: "درخواستی ها",
+        name: "درخواستی برگشت",
         icon: TbArrowsExchange,
         link: "/admin/orders/refund-request",
       },
