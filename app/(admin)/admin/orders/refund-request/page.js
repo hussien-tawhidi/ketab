@@ -1,7 +1,5 @@
-import React from 'react'
+import RefundRequest from "@/components/admin/orders/RefundRequest";
 
 export default function orderRefunRequestedPage() {
-  return (
-    <div>orderRefunRequested</div>
-  )
+  return <RefundRequest />;
 }

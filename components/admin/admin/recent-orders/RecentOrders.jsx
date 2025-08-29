@@ -1,15 +1,15 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
-import ProductTable from "./ProductTable";
-import { adminOrdersOptionFilter, orders } from "../../../../constant/admin";
+import { adminOrdersOptionFilter } from "../../../../constant/admin";
 import { TfiShoppingCart } from "react-icons/tfi";
-import Input from "@/components/shared/Input";
 import { BiSearch } from "react-icons/bi";
+import ProductTable from "./ProductTable";
+import Input from "@/components/shared/Input";
 import CustomSelect from "@/components/shared/CustomeSelect";
 
-export default function OrdersTable() {
+export default function OrdersTable({ orders = [],title }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterStatus, setFilterStatus] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
@@ -50,7 +50,7 @@ export default function OrdersTable() {
       {/* Header */}
       <div className='flex flex-col md:flex-row items-start text-ketab-gray md:items-center justify-between gap-4 mb-6'>
         <h2 className='text-2xl font-bold text-dark flex items-center gap-3'>
-          <TfiShoppingCart /> سفارشات اخیر
+          <TfiShoppingCart /> {title}
         </h2>
 
         <div className='flex flex-col sm:flex-row gap-3 w-full sm:w-auto'>

@@ -1,7 +1,5 @@
-import React from 'react'
+import RefundProcessing from "@/components/admin/orders/RefundProcessing";
 
 export default function orderRefundProcessingPage() {
-  return (
-    <div>orderRefundProcessing</div>
-  )
+  return <RefundProcessing />;
 }

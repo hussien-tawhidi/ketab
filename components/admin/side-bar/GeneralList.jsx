@@ -45,7 +45,7 @@ export default function GeneralList({ toggleMenu, openMenus }) {
                       <li key={sub.name}>
                         <Link
                           href={sub.link}
-                          className='flex items-center gap-2 px-3 py-2 text-sm text-ketab-gray 
+                          className='flex items-center gap-2 px-3 py-2 text-[12px] text-ketab-gray 
                             hover:text-ketab-green hover:bg-ketab-green/5 rounded-lg transition-all duration-200'>
                           <SubIcon className='text-ketab-gray text-base' />
                           <span>{sub.name}</span>
