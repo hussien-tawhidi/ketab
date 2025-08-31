@@ -1,7 +1,6 @@
-import React from 'react'
+import AssignPermission from "@/components/admin/permission/AssignPermission";
+import React from "react";
 
 export default function assignPermissionPage() {
-  return (
-    <div>assignRolePage</div>
-  )
+  return <AssignPermission />;
 }
