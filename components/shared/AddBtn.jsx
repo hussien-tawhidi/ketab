@@ -8,7 +8,7 @@ export default function AddBtn({ title, route }) {
   return (
     <button
       onClick={() => router.push(route)}
-      className='py-1.5 flex items-center gap-2 px-5 mr-4 rounded-md border border-ketab-green text-ketab-green'>
+      className='py-2 flex items-center whitespace-nowrap gap-2 px-5 mr-4 rounded-md border border-ketab-green text-ketab-green'>
       <IoAdd /> {title}
     </button>
   );

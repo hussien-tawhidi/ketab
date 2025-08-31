@@ -1,7 +1,5 @@
-import React from 'react'
+import WIP from "@/components/shared/WIP";
 
 export default function invoicesPage() {
-  return (
-    <div>invoicesPage</div>
-  )
+  return <WIP />;
 }
