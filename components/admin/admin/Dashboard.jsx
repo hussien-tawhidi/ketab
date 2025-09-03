@@ -1,7 +1,13 @@
+"use client";
+
+import dynamic from "next/dynamic";
 import StatCard from "./StateCard";
 import { FiBriefcase, FiShoppingCart, FiUserPlus } from "react-icons/fi";
 import { FaHandshake } from "react-icons/fa";
-import PerformanceByCountry from "./by-country/CountryByPerformance";
+const PerformanceMap = dynamic(
+  () => import("./by-country/CountryByPerformance"),
+  { ssr: false } // disables server-side rendering
+);
 
 export default function Dashboard() {
   return (
@@ -42,7 +48,7 @@ export default function Dashboard() {
 
       {/* Right side: Map */}
       <div className='xl:col-span-2 h-full'>
-        <PerformanceByCountry />
+        <PerformanceMap />
       </div>
     </div>
   );

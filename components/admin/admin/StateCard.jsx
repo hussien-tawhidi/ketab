@@ -1,3 +1,5 @@
+"use client"
+
 import MiniLineChart from "./MiniLineChart";
 
 const StatCard = ({ title, value, icon, chartData, color }) => {

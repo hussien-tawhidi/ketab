@@ -1,3 +1,5 @@
+"use client"
+
 import MapChart from "./MapChart";
 import CountryPerformance from "./CountryPerformance";
 
