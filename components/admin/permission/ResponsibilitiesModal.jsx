@@ -51,30 +51,15 @@ export default function ResponsibilitiesModal({ open, onClose, user }) {
         <div className='space-y-4'>
           <div>
             <h3 className='font-semibold text-ketab-gray'>مسئولیت‌ها:</h3>
-            {user?.responsibilities?.length ? (
+            {user?.permissions?.length ? (
               <ul className='list-disc list-inside text-sm text-ketab-gray/80'>
-                {user.responsibilities.map((r, idx) => (
+                {user.permissions.map((r, idx) => (
                   <li key={idx}>{r}</li>
                 ))}
               </ul>
             ) : (
               <p className='text-sm text-ketab-gray/50'>
                 هیچ مسئولیتی تعریف نشده
-              </p>
-            )}
-          </div>
-
-          <div>
-            <h3 className='font-semibold text-ketab-gray'>وظایف:</h3>
-            {user?.jobs?.length ? (
-              <ul className='list-disc list-inside text-sm text-ketab-gray/80'>
-                {user.jobs.map((j, idx) => (
-                  <li key={idx}>{j}</li>
-                ))}
-              </ul>
-            ) : (
-              <p className='text-sm text-ketab-gray/50'>
-                هیچ وظیفه‌ای تعریف نشده
               </p>
             )}
           </div>

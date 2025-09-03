@@ -6,7 +6,7 @@ import ErrorMsg from "@/components/shared/ErrorMsg";
 import Input from "@/components/shared/Input";
 import SubmitButton from "@/components/shared/SubmitButton";
 import SuccessMsg from "@/components/shared/SuccessMsg";
-import { roles } from "@/constant/admin";
+import { useRoles } from "@/hooks/fetchRoles";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
@@ -17,38 +17,31 @@ export default function AssignPermission() {
   const [userId, setUserId] = useState("");
   const [role, setRole] = useState("");
   const [active, setActive] = useState(true);
-  const [availableJobs, setAvailableJobs] = useState([]);
+  const [permissions, setPermissions] = useState([]);
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
   const [loading, setLoading] = useState(false);
-  const [availableResponsibilities, setAvailableResponsibilities] = useState(
-    []
-  );
 
   const router = useRouter();
+  const { roles: databaseRoles } = useRoles();
 
-  // Update jobs & responsibilities when role changes
+  // Update permissions when role changes
   useEffect(() => {
-    const selectedRole = roles.find((r) => r.value === role);
+    const selectedRole = databaseRoles.find((r) => r.name === role);
     if (selectedRole) {
-      setAvailableJobs(selectedRole.jobs || []);
-      setAvailableResponsibilities(selectedRole.responsibilities || []);
+      setPermissions(selectedRole.permissions || []);
     } else {
-      setAvailableJobs([]);
-      setAvailableResponsibilities([]);
+      setPermissions([]);
     }
-  }, [role]);
+  }, [role, databaseRoles]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Reset messages
     setErrorMsg("");
     setSuccessMsg("");
 
-    // Validation
     if (!userId || !role) {
-      setErrorMsg("باید تمام فلد های لازمه را پر کنید!");
+      setErrorMsg("باید تمام فیلدهای لازم را پر کنید!");
       return;
     }
 
@@ -58,25 +51,20 @@ export default function AssignPermission() {
         userId,
         role,
         active,
-        jobs: availableJobs,
-        responsibilities: availableResponsibilities,
+        permissions, // ✅ now we send permissions instead of jobs/responsibilities
       };
 
       await axios.post("/api/admin/permission", payload);
-      setSuccessMsg("مجوز جدید با موفقیت ایجاد شد ");
+      setSuccessMsg("مجوز جدید با موفقیت ایجاد شد");
+      router.push("/admin/permissions");
       // Reset form
       setUserId("");
       setRole("");
       setActive(true);
-      setAvailableJobs([]);
-      setAvailableResponsibilities([]);
+      setPermissions([]);
     } catch (error) {
       console.error("🚀 handleSubmit error:", error);
-      if (
-        error.response &&
-        error.response.data &&
-        error.response.data.message
-      ) {
+      if (error.response?.data?.message) {
         setErrorMsg(error.response.data.message);
       } else {
         setErrorMsg("خطا در ایجاد مجوز! لطفا دوباره تلاش کنید.");
@@ -97,7 +85,8 @@ export default function AssignPermission() {
             <MdKeyboardBackspace />
           </button>
         </div>
-        <form className='space-y-5 mt-5'>
+
+        <form className='space-y-5 mt-5' onSubmit={handleSubmit}>
           {errorMsg && (
             <div className='my-4'>
               <ErrorMsg text={errorMsg} />
@@ -108,6 +97,7 @@ export default function AssignPermission() {
               <SuccessMsg text={successMsg} />
             </div>
           )}
+
           {/* User ID */}
           <Input
             label='شناسه کاربر (ID)'
@@ -118,54 +108,40 @@ export default function AssignPermission() {
 
           {/* Role */}
           <div>
-            <label className='block text-sm font-medium mb-1'>
-              انتخاب مجوز
-            </label>
+            <label className='block text-sm font-medium mb-1'>انتخاب نقش</label>
             <CustomSelect
-              options={roles.filter((item) => item.jobs.length !== 0)}
+              options={databaseRoles.map((r) => ({
+                label: r.name,
+                value: r.name,
+              }))}
               value={role}
               defaultLabel='انتخاب نقش'
               onChange={(option) => setRole(option.value)}
             />
           </div>
 
-          {/* Jobs (Read-only) */}
-          {availableJobs.length > 0 && (
+          {/* Permissions (read-only preview) */}
+          {permissions.length > 0 && (
             <div className='mt-3'>
-              <label className='block text-sm font-medium mb-1'>وظایف</label>
+              <label className='block text-sm font-medium mb-1'>مجوزها</label>
               <ul className='text-sm'>
-                {availableJobs.map((job, idx) => (
+                {permissions.map((perm, idx) => (
                   <li key={idx} className='flex items-center gap-1'>
                     <TiArrowLeft />
-                    {job}
+                    {perm}
                   </li>
                 ))}
               </ul>
             </div>
           )}
 
-          {/* Responsibilities (Read-only) */}
-          {availableResponsibilities.length > 0 && (
-            <div className='mt-3'>
-              <label className='block text-sm font-medium mb-1'>
-                مسئولیت‌ها
-              </label>
-              <ul className='text-sm'>
-                {availableResponsibilities.map((resp, idx) => (
-                  <li key={idx} className='flex items-center gap-1'>
-                    <TiArrowLeft />
-                    {resp}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+          {/* Active Toggle */}
           <div className='flex'>
             <div
               className={`flex items-center gap-2 ${
                 active ? "text-ketab-green" : ""
               } p-2 rounded-xl`}>
-              <p>{active ? "فعال" : "غیر فعال"}</p>
+              <p>{active ? "فعال" : "غیرفعال"}</p>
               <AnimatedCheckbox
                 checked={active}
                 onChange={() => setActive(!active)}
@@ -174,11 +150,8 @@ export default function AssignPermission() {
               />
             </div>
           </div>
-          <SubmitButton
-            label={"ذخیره"}
-            loading={loading}
-            onClick={handleSubmit}
-          />
+
+          <SubmitButton label='ذخیره' loading={loading} />
         </form>
       </div>
     </div>

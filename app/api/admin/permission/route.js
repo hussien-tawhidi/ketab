@@ -6,27 +6,13 @@ import User from "@/model/User";
 
 export async function POST(req) {
   try {
-    const {
-      userId,
-      role,
-      active = true,
-      jobs = [],
-      responsibilities = [],
-    } = await req.json();
+    const { userId, role, active, permissions } = await req.json();
 
     // Basic validation
     if (!userId || !role) {
       return NextResponse.json(
         { message: "فیلدهای userId و role الزامی هستند!" },
         { status: 401 }
-      );
-    }
-
-    // Validate role
-    if (!VALID_ROLES.includes(role)) {
-      return NextResponse.json(
-        { message: "نقش انتخاب‌شده معتبر نیست!" },
-        { status: 400 }
       );
     }
 
@@ -54,12 +40,14 @@ export async function POST(req) {
       userId,
       role,
       active,
-      jobs,
-      responsibilities,
+      permissions,
     });
 
     return NextResponse.json(
-      { message: "Permission created successfully", permission: newPermission },
+      {
+        message: "Permission created successfully",
+        permissions: newPermission,
+      },
       { status: 201 }
     );
   } catch (error) {

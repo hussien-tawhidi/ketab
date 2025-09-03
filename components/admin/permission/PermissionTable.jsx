@@ -49,7 +49,7 @@ export default function PermissionsTable({
               <td className='px-6 py-4'>
                 <CustomSelect
                   value={user.role}
-                  options={roles}
+                  options={roles.map((r) => ({ label: r.name, value: r.name }))}
                   onChange={(option) => changeRole(user._id, option.value)}
                 />
               </td>
