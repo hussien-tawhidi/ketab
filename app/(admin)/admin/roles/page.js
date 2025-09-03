@@ -1,7 +1,4 @@
-import React from 'react'
-
+import Roles from "@/components/admin/roles/Roles";
 export default function rolesPage() {
-  return (
-    <div>rolesPage</div>
-  )
+  return <Roles />;
 }

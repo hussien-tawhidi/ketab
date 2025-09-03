@@ -1,7 +1,5 @@
-import React from 'react'
+import CreateRoles from "@/components/admin/roles/create/CreateRoles";
 
 export default function createRolesPage() {
-  return (
-    <div>createRoles</div>
-  )
+  return <CreateRoles />;
 }

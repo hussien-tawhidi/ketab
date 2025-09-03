@@ -1,8 +1,6 @@
 // models/Permission.js
 import mongoose from "mongoose";
 
-export const VALID_ROLES = ["Admin", "Editor", "User", "Viewer"];
-
 const PermissionSchema = new mongoose.Schema(
   {
     userId: {
@@ -11,9 +9,8 @@ const PermissionSchema = new mongoose.Schema(
       required: true,
     },
     role: {
-      type: String,
+      type: String, // reference to User
       required: true,
-      enum: VALID_ROLES,
     },
     active: {
       type: Boolean,

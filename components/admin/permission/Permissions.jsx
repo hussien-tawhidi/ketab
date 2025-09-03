@@ -1,24 +1,15 @@
 "use client";
-
-import AddBtn from "@/components/shared/AddBtn";
-import AnimatedCheckbox from "@/components/shared/AnimateCheckbox";
-import CustomSelect from "@/components/shared/CustomeSelect";
 import ErrorMsg from "@/components/shared/ErrorMsg";
-import Input from "@/components/shared/Input";
-import SubmitButton from "@/components/shared/SubmitButton";
 import SuccessMsg from "@/components/shared/SuccessMsg";
-import { roles } from "@/constant/admin";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { FiEye } from "react-icons/fi";
-import Modal from "./ResponsibilitiesModal";
-import { TiArrowLeft } from "react-icons/ti";
 import PermissionsTable from "./PermissionTable";
 import ResponsibilitiesModal from "./ResponsibilitiesModal";
 import PermissionsHeader from "./PermissionHeader";
+import { useRoles } from "@/hooks/fetchRoles";
+
 export default function PermissionsPage() {
   const [users, setUsers] = useState([]);
-  console.log("🚀 ~ PermissionsPage ~ users:", users);
   const [loading, setLoading] = useState(null);
   const [search, setSearch] = useState("");
   const [roleFilter, setRoleFilter] = useState("All");
@@ -27,6 +18,9 @@ export default function PermissionsPage() {
   const [openModal, setOpenModal] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
 
+  const { roles: databaseRoles } = useRoles();
+
+  // ✅ گرفتن لیست کاربران
   useEffect(() => {
     const fetchPermissions = async () => {
       try {
@@ -39,6 +33,7 @@ export default function PermissionsPage() {
     fetchPermissions();
   }, []);
 
+  // ✅ تغییر وضعیت فعال بودن
   const toggleActive = (id) => {
     setUsers(
       users.map((user) =>
@@ -47,8 +42,9 @@ export default function PermissionsPage() {
     );
   };
 
+  // ✅ تغییر نقش کاربر
   const changeRole = (id, newRole) => {
-    const selectedRole = roles.find((r) => r.value === newRole);
+    const selectedRole = databaseRoles.find((r) => r.name === newRole);
 
     setUsers(
       users.map((user) =>
@@ -56,22 +52,23 @@ export default function PermissionsPage() {
           ? {
               ...user,
               role: newRole,
-              responsibilities: selectedRole?.responsibilities || [],
-              jobs: selectedRole?.jobs || [],
+              permissions: selectedRole?.permissions || [],
             }
           : user
       )
     );
   };
 
+  // ✅ فیلتر بر اساس سرچ و نقش
   const filteredUsers = users.filter((user) => {
-    const userData = user.userId || {}; // populated user
+    const userData = user.userId || {};
     const matchesSearch =
       userData.name?.includes(search) || userData.email?.includes(search);
     const matchesRole = roleFilter === "All" || user.role === roleFilter;
     return matchesSearch && matchesRole;
   });
 
+  // ✅ ذخیره تغییرات
   const handleSaveChanged = async (id) => {
     setLoading(id);
     const user = users.find((u) => u._id === id);
@@ -101,8 +98,12 @@ export default function PermissionsPage() {
         setSearch={setSearch}
         roleFilter={roleFilter}
         setRoleFilter={setRoleFilter}
-        roles={roles}
+        roles={[
+          { label: "همه", value: "All" },
+          ...databaseRoles.map((r) => ({ label: r.name, value: r.name })),
+        ]}
       />
+
       {errorMsg && (
         <div className='my-4'>
           <ErrorMsg text={errorMsg} />
@@ -113,11 +114,12 @@ export default function PermissionsPage() {
           <SuccessMsg text={successMsg} />
         </div>
       )}
+
       {/* Table */}
       <div className='shadow-lg rounded-xl'>
         <PermissionsTable
           users={filteredUsers}
-          roles={roles}
+          roles={databaseRoles}
           loadingUserId={loading}
           changeRole={changeRole}
           toggleActive={toggleActive}
