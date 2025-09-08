@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import GeneralList from "./GeneralList";
 import UserProfileMenu from "./UserProfileMenu";
 import AdminProfile from "./AdminProfile";
+import { IoStorefrontOutline } from "react-icons/io5";
 
 export default function SideBar() {
   const [openMenus, setOpenMenus] = useState({});
@@ -31,8 +32,11 @@ export default function SideBar() {
         <h2 className='text-xl font-bold text-ketab-green'>فروشگاه کتاب</h2>
         <p className='text-xs text-ketab-gray mt-1 font-semibold'>پنل مدیریت</p>
       </div>
-      <h3 className='text-xs font-semibold text-ketab-gray mb-3 px-2 uppercase tracking-wider border-b pb-2 border-ketab-green/20'>
-        مدیریت فروشگاه
+      <h3
+        onClick={() => router.push("/")}
+        className='text-xs font-semibold text-ketab-gray cursor-pointer w-full hover:bg-ketab-green/5 text-md flex gap-2 uppercase tracking-wider pb-2 px-3 py-3'>
+        <IoStorefrontOutline className='text-ketab-green text-lg' />
+        فروشگاه
       </h3>
 
       <GeneralList openMenus={openMenus} toggleMenu={toggleMenu} />
