@@ -2,7 +2,6 @@
 
 import DeleteActionBtn from "@/components/shared/DeleteActionBtn";
 import EditActionBtn from "@/components/shared/EditActionBtn";
-import { IoReturnDownBack } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 import { FaRegCheckCircle } from "react-icons/fa";
 
@@ -50,7 +49,7 @@ export default function RoleCard({ role, onDelete, deleting }) {
           isLoading={deleting === role._id}
         />
         <EditActionBtn
-          onEdit={() => router.push(`/admin/roles/${role._id}`)}
+          onEdit={`/admin/roles/${role._id}`}
           text='ویرایش'
         />
       </div>

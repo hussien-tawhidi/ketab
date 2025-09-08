@@ -67,7 +67,7 @@ export default function BooksListsTable({
               <td className='px-4 py-1'>
                 <div className='items-center flex gap-2'>
                   <EditActionBtn
-                    onEdit={() => router.push(`/admin/books/${book._id}`)}
+                    onEdit={`/admin/books/${book._id}`}
                     text='ویرایش'
                   />
                   <DeleteActionBtn

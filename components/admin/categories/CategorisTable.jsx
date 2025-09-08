@@ -48,7 +48,7 @@ export default function CategorisTable({
               <td className='px-4 py-3'>
                 <div className='items-center flex gap-2'>
                   <EditActionBtn
-                    onEdit={() => router.push(`/admin/categories/${cate?._id}`)}
+                    onEdit={`/admin/categories/${cate?._id}`}
                     text='ویرایش'
                   />
                   <DeleteActionBtn
