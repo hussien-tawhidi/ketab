@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import StatCard from "./StateCard";
 import { FiBriefcase, FiShoppingCart, FiUserPlus } from "react-icons/fi";
 import { FaHandshake } from "react-icons/fa";
+
 const PerformanceMap = dynamic(
   () => import("./by-country/CountryByPerformance"),
   { ssr: false } // disables server-side rendering
