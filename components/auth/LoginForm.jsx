@@ -76,11 +76,12 @@ export default function LoginForm() {
             />
           )}
           <Image
+            onClick={() => router.push("/")}
             width={100}
             height={100}
             src='/logo.png'
             alt='کتابراه'
-            className='h-12 w-auto object-cover'
+            className='h-12 w-auto cursor-pointer object-cover'
           />
         </div>
 

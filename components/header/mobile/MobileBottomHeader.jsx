@@ -20,9 +20,9 @@ export default function MobileBottomHeader() {
         </li>
         <li
           className={`flex flex-col items-center ${
-            pathname === "/categories" && "text-ketab-green"
+            pathname === "/mobile-view-categories" && "text-ketab-green"
           }`}
-          onClick={() => router.push("/categories")}>
+          onClick={() => router.push("/mobile-view-categories")}>
           <TbCategory2 className='text-2xl' /> دسته بندی
         </li>
         <li
