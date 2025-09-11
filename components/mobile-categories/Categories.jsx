@@ -4,7 +4,7 @@ import { IoIosArrowDown } from "react-icons/io";
 
 export default function Categories() {
   return (
-    <div className='pt-20 px-4'>
+    <div className='py-20 px-4'>
       <p className='border-b w-full border-ketab-green text-ketab-green'>
         کتاب ها
       </p>

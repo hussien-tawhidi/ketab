@@ -1,9 +1,21 @@
-import { MdOutlineAddCard, MdOutlineLibraryBooks } from "react-icons/md";
+import {  MdOutlineLibraryBooks } from "react-icons/md";
 import { FaMobileAlt } from "react-icons/fa";
 import { IoBookmarksOutline } from "react-icons/io5";
 import { AiOutlinePercentage } from "react-icons/ai";
 import { LuClipboardList, LuUserCog } from "react-icons/lu";
 import { CiCircleQuestion } from "react-icons/ci";
+import {
+  IoPhonePortraitOutline,
+  IoBookOutline,
+  IoHelpCircleOutline,
+  IoDocumentTextOutline,
+  IoLockClosedOutline,
+  IoInformationCircleOutline,
+  IoCallOutline,
+  IoCloudUploadOutline,
+  IoBriefcaseOutline,
+  IoLogInOutline,
+} from "react-icons/io5";
 
 export const booksCategories = [
   {
@@ -124,16 +136,28 @@ export const searchSuggestion = [
 ];
 
 export const mobileToMenuHeader = [
-  { label: "نصب اپلیکیشن کتابراه", href: "/install-app" },
-  { label: "دسته‌بندی کتاب‌ها", href: "/categories" },
-  { label: "راهنمایی و پشتیبانی کاربران", href: "/support" },
-  { label: "شرایط استفاده", href: "/terms" },
-  { label: "حریم خصوصی", href: "/privacy" },
-  { label: "درباره کتابراه", href: "/about" },
-  { label: "تماس با ما", href: "/contact" },
-  { label: "نشر الکترونیک و انتشار کتاب", href: "/publishing" },
-  { label: "فرصت‌های شغلی", href: "/jobs" },
-  { label: "ورود / ثبت نام", href: "/login" },
+  {
+    label: "نصب اپلیکیشن کتابراه",
+    href: "/install-app",
+    icon: IoPhonePortraitOutline,
+  },
+  { label: "دسته‌بندی کتاب‌ها", href: "/categories", icon: IoBookOutline },
+  {
+    label: "راهنمایی و پشتیبانی کاربران",
+    href: "/support",
+    icon: IoHelpCircleOutline,
+  },
+  { label: "شرایط استفاده", href: "/terms", icon: IoDocumentTextOutline },
+  { label: "حریم خصوصی", href: "/privacy", icon: IoLockClosedOutline },
+  { label: "درباره کتابراه", href: "/about", icon: IoInformationCircleOutline },
+  { label: "تماس با ما", href: "/contact", icon: IoCallOutline },
+  {
+    label: "نشر الکترونیک و انتشار کتاب",
+    href: "/publishing",
+    icon: IoCloudUploadOutline,
+  },
+  { label: "فرصت‌های شغلی", href: "/jobs", icon: IoBriefcaseOutline },
+  { label: "ورود / ثبت نام", href: "/login", icon: IoLogInOutline },
 ];
 
 export const menuItems = [

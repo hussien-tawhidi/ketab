@@ -29,6 +29,11 @@ export function useLoggedUser() {
 
     fetchUser();
   }, []);
-
-  return { user, loading };
+  const logout = () => {
+    localStorage.removeItem("token"); // remove token
+    setUser(null); // reset user
+    // optional redirect:
+    window.location.href = "/";
+  };
+  return { user, loading, logout };
 }
