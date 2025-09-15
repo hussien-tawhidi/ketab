@@ -14,6 +14,7 @@ import Image from "next/image";
 import { useLoggedUser } from "@/hooks/useLoggedUser";
 import { IoLogInOutline, IoLogOutOutline } from "react-icons/io5";
 import Loader from "@/components/shared/Loader";
+import UserMenu from "../UserMenu";
 export default function MobileTopHeader() {
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState(false);
@@ -24,12 +25,12 @@ export default function MobileTopHeader() {
     return <Loader />;
   }
   return (
-    <div className='md:hidden block fixed top-0 left-0 right-0  bg-ketab-dark'>
+    <div className='md:hidden block fixed top-0 left-0 right-0 z-50  bg-ketab-dark'>
       <header className='relative w-full bg-ketab-dark'>
-        <div className='flex gap-5 py-3 justify-between items-center px-2'>
+        <div className='flex gap-2 py-3 justify-between items-center px-2'>
           {/* Burger Menu - Mobile */}
           <button
-            className='md:hidden relative w-6 h-6 flex flex-col justify-center items-center z-50'
+            className='md:hidden relative w-6 h-6 flex flex-col justify-center items-center z-50 bg-ketab-light p-5 rounded'
             onClick={() => setIsOpen(!isOpen)}
             aria-label='Toggle menu'>
             <span
@@ -62,12 +63,18 @@ export default function MobileTopHeader() {
             </div>
           )}
           {/* <Search /> */}
-          <FaRegCircleUser className='text-ketab-gray text-3xl' />
+          {user ? (
+            <UserMenu user={user} logout={logout} />
+          ) : (
+            <Link href={"/users/signin"}>
+              <FaRegCircleUser className='text-ketab-gray text-3xl' />
+            </Link>
+          )}
         </div>
 
         {/* Mobile Menu */}
         <div
-          className={`md:hidden absolute top-full left-0 w-full bg-ketab-light overflow-hidden transition-all duration-500 ease-in-out ${
+          className={`md:hidden absolute top-full left-0 w-full bg-ketab-light overflow-y-auto no-scrollbar transition-all duration-500 ease-in-out ${
             isOpen ? "h-screen" : "h-0"
           }`}>
           <ul className='flex flex-col px-2 space-y-2 py-6 text-ketab-white'>

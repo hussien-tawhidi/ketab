@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-async function fetchRoles() {
+export async function fetchRoles() {
   try {
     const { data } = await axios.get("/api/admin/role");
     return { roles: data.roles, error: null };

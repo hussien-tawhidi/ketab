@@ -78,3 +78,17 @@ export async function POST(req) {
     );
   }
 }
+
+export async function GET(req) {
+  await dbConnect();
+  try {
+    const books = await Book.find();
+    return NextResponse.json({ books }, { status: 200 });
+  } catch (error) {
+    console.log("🚀 ~ GET ~ error:", error);
+    return NextResponse.json(
+      { message: "Error in fetching book" },
+      { status: 500 }
+    );
+  }
+}
