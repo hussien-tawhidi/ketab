@@ -4,6 +4,7 @@ import axios from "axios";
 import SubmitButton from "../shared/SubmitButton";
 import SuccessMsg from "../shared/SuccessMsg";
 import ErrorMsg from "../shared/ErrorMsg";
+import { useRouter } from "next/navigation";
 
 export default function OTPForm({ identifier, setStep, onSuccess, onError }) {
   console.log("🚀 ~ OTPForm ~ identifier:", identifier);
@@ -12,6 +13,8 @@ export default function OTPForm({ identifier, setStep, onSuccess, onError }) {
   const [successMsg, setSuccessMsg] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const inputsRef = useRef([]);
+
+  const router = useRouter();
 
   // Convert Persian/Arabic digits to English
   const toEnglishDigits = (str) =>
@@ -53,6 +56,7 @@ export default function OTPForm({ identifier, setStep, onSuccess, onError }) {
         setSuccessMsg("ورود موفقیت‌آمیز بود");
         setErrorMsg("");
         if (onSuccess) onSuccess(res.data);
+        router.push("/account");
       }
     } catch (err) {
       const message = err?.response?.data?.message || "خطا در تایید کد.";
@@ -136,9 +140,7 @@ export default function OTPForm({ identifier, setStep, onSuccess, onError }) {
             : "ویرایش ایمیل"}
         </button>
         <div className={identifier ? "flex" : "hidden"}>
-          <SubmitButton
-            label={loading ? "در حال تایید..." : "تایید کد"}
-          />
+          <SubmitButton label={loading ? "در حال تایید..." : "تایید کد"} />
         </div>
       </div>
 

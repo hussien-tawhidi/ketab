@@ -7,11 +7,13 @@ import { useEffect, useRef, useState } from "react";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { MdKeyboardArrowDown, MdOutlineLogout } from "react-icons/md";
 
-const UserMenu = ({ user }) => {
+const UserMenu = ({ user,logout }) => {
   const [showUserMenu, setShowUserMenu] = useState(false);
   const menuRef = useRef(null);
   const router = useRouter();
 
+
+  
   // Close menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -25,14 +27,14 @@ const UserMenu = ({ user }) => {
   return (
     <div className='relative' ref={menuRef}>
       <div
-        className='whitespace-nowrap'
+        className='whitespace-nowrap bg-ketab-light rounded overflow-hidden'
         onClick={() => setShowUserMenu(!showUserMenu)}>
         <button
-          className={`p-2 text-2xl rounded-lg border flex items-center text-ketab-gray gap-1 ${
-            showUserMenu ? "border-ketab-green" : "border-ketab-white/10"
+          className={`p-2 text-2xl border flex items-center text-ketab-gray gap-1 ${
+            showUserMenu ? "border-ketab-green" : "border-none"
           } transition`}>
           <FaRegCircleUser />
-          <MdKeyboardArrowDown />
+          <MdKeyboardArrowDown className='md:flex hidden' />
         </button>
       </div>
       {showUserMenu && (
@@ -48,12 +50,14 @@ const UserMenu = ({ user }) => {
                   height={100}
                   alt='avatar'
                   className='object-cover w-10 h-auto'
+                  onClick={() => setShowUserMenu(!showUserMenu)}
                 />
                 {user.name}
               </li>
               {menuItems.map((item) => (
                 <li key={item.id} className='py-1 last:border-b-0'>
                   <button
+                    onClick={() => setShowUserMenu(!showUserMenu)}
                     className={`w-full flex items-center hover:text-ketab-green justify-between p-2 text-right transition-colors`}>
                     <div className='flex items-center w-full'>
                       <span
@@ -72,7 +76,9 @@ const UserMenu = ({ user }) => {
                   </button>
                 </li>
               ))}
-              <li className='flex items-center p-2 gap-3 bg-ketab-orange'>
+              <li
+                className='flex items-center p-2 gap-3 bg-ketab-orange cursor-pointer'
+                onClick={logout}>
                 <MdOutlineLogout />
                 خروج
               </li>

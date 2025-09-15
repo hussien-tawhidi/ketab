@@ -7,12 +7,11 @@ import { FaRegCircleUser } from "react-icons/fa6";
 import BottomHeader from "./BottomHeader";
 import { useRouter } from "next/navigation";
 import { useLoggedUser } from "@/hooks/useLoggedUser";
-import { MdKeyboardArrowDown } from "react-icons/md";
 import UserMenu from "./UserMenu";
 
 export default function DesktopHeader() {
   const [showMenu, setShowMenu] = useState(true);
-  const { user, loading } = useLoggedUser();
+  const { user, loading, logout } = useLoggedUser();
   const [lastScrollY, setLastScrollY] = useState(0);
 
   const router = useRouter();
@@ -43,15 +42,16 @@ export default function DesktopHeader() {
           <Image
             src='/logo.png'
             alt='logo'
-            width={100}
-            height={100}
-            className='object-cover'
+            width={40}
+            height={40}
+            className='object-cover cursor-pointer'
+            onClick={()=>router.push("/")}
           />
           <div className='w-full'>
             <Search />
           </div>
           {user ? (
-            <UserMenu user={user}/>
+            <UserMenu user={user} logout={logout} />
           ) : (
             <div
               className='whitespace-nowrap'

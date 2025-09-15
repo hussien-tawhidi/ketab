@@ -22,8 +22,8 @@ export default function BottomHeader() {
         <Image
           src={"/logo.png"}
           alt='logo'
-          width={70}
-          height={70}
+          width={30}
+          height={30}
           className='object-cover'
           /> اپلیکیشن
       </div>
