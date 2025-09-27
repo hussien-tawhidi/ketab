@@ -4,9 +4,9 @@ import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 export default function ReviewAverageStars({ reviews = [], reviewLength }) {
   // Keep as number
   const avgRatingNum =
-    reviews.length > 0
-      ? reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length
-      : 4.5;
+    reviews?.length > 0
+      ? reviews?.reduce((sum, r) => sum + r?.rating, 0) / reviews?.length
+      : 0;
 
   const avgRating = avgRatingNum.toFixed(1); // string for display
   const fullStars = Math.floor(avgRatingNum); // number
@@ -28,7 +28,7 @@ export default function ReviewAverageStars({ reviews = [], reviewLength }) {
         ))}
       </div>
       {reviewLength && (
-        <span className='text-sm text-ketab-gray'>({reviews.length} نظر)</span>
+        <span className='text-sm text-ketab-gray'>({reviews?.length} نظر)</span>
       )}
     </div>
   );

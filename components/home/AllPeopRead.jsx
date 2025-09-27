@@ -6,19 +6,36 @@ import { useEffect, useState } from "react";
 
 export default function AllPeopRead() {
   const [books, setBooks] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const loadBooks = async () => {
-      const fetchedBooks = await fetchBooks();
-      fetchedBooks.map((item) => console.log(item.categories));
-      const shuffled = [...fetchedBooks]
-        .sort(() => Math.random() - 0.5)
-        .slice(10, 20);
+      setLoading(true);
+      try {
+        const fetchedBooks = await fetchBooks();
+        fetchedBooks.map((item) => console.log(item.categories));
+        const shuffled = [...fetchedBooks]
+          .sort(() => Math.random() - 0.5)
+          .slice(10, 20);
 
-      setBooks(shuffled);
+        setBooks(shuffled);
+      } catch (error) {
+        console.log("🚀 ~ loadBooks ~ error:", error);
+      } finally {
+        setLoading(false);
+      }
     };
 
     loadBooks();
   }, []);
-  return <SliderFiveRows data={books} title='مردم دنیا چی میخواند ؟' />;
+  
+  if (!books) return null;
+
+  return (
+    <SliderFiveRows
+      data={books}
+      title='مردم دنیا چی میخواند ؟'
+      loading={loading}
+    />
+  );
 }

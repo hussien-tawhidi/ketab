@@ -5,7 +5,7 @@ import MobileBottomHeader from "./mobile/MobileBottomHeader";
 export default function Header() {
 
   return (
-    <div>
+    <>
       <div className='md:hidden block'>
         <MobileTopHeader />
         <MobileBottomHeader />
@@ -13,6 +13,6 @@ export default function Header() {
       <div className='md:block hidden'>
         <DesktopHeader />
       </div>
-    </div>
+    </>
   );
 }

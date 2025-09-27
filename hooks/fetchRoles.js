@@ -38,3 +38,17 @@ export function useRoles() {
 
   return { roles, setRoles, loading, error, refetch: fetchRoles };
 }
+
+export function formatPersianDate(dateString) {
+  if (!dateString) return "-";
+  try {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("fa-IR", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  } catch (error) {
+    return "-";
+  }
+}

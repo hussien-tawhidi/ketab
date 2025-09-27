@@ -27,7 +27,7 @@ const UserMenu = ({ user,logout }) => {
   return (
     <div className='relative' ref={menuRef}>
       <div
-        className='whitespace-nowrap bg-ketab-light rounded overflow-hidden'
+        className='whitespace-nowrap rounded overflow-hidden'
         onClick={() => setShowUserMenu(!showUserMenu)}>
         <button
           className={`p-2 text-2xl border flex items-center text-ketab-gray gap-1 ${

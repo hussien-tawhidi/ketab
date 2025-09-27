@@ -1,47 +1,39 @@
 import mongoose from "mongoose";
 
-const { Schema } = mongoose;
-
-const CartItemSchema = new Schema({
-  _id: { type: String, required: true },
-  name: { type: String, required: true },
-  image: { type: [String], required: true },
-  quantity: { type: Number, required: true },
-  price: { type: Number, required: true },
-});
-
-const AddressSchema = new Schema({
-  province: { type: String, required: true },
-  city: { type: String, required: true },
-  address: { type: String, required: true },
-  houseNumber: { type: String, required: true },
-  unit: { type: String },
-  name: { type: String, required: true },
-  phone: { type: String, required: true },
-});
-
-const OrderSchema = new Schema(
+const OrderSchema = new mongoose.Schema(
   {
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
+    customer: {
+      name: { type: String, required: true },
+      phone: { type: String, required: true },
     },
-    address: { type: { AddressSchema }, required: true },
-    selectedDelivery: { type: String, required: true },
-    selectedPayment: { type: String, required: true },
-    totalPrice: { type: Number, required: true },
-    deliveryCost: { type: String, required: true },
-    discountCode: { type: String },
-    discountApplied: { type: Boolean, default: false },
-    cartItems: { type: [CartItemSchema], required: true },
-    status: { type: String, default: "pending" },
+
+    address: {
+      province: { type: String, required: true },
+      city: { type: String, required: true },
+      plack: { type: String, required: true },
+      postCode: { type: String, required: true },
+      fullAddress: { type: String, required: true }, // kooche, khiaban, etc.
+    },
+
+    items: [
+      {
+        book: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Book", // 🔗 connect to Book model
+          required: true,
+        },
+        quantity: { type: Number, default: 1, min: 1 },
+        unitPrice: { type: Number, required: true }, // snapshot of price at time of order
+      },
+    ],
+
+    total: { type: Number, required: true },
+    totalDiscount: { type: Number, default: 0 },
+
+    paymentMethod: { type: String, default: "cod" }, // cod, online, etc.
+    status: { type: String, default: "pending" }, // pending, paid, shipped, delivered
   },
-  {
-    timestamps: true, // createdAt, updatedAt
-  }
+  { timestamps: true }
 );
 
-const Order = mongoose.models.Order || mongoose.model("Order", OrderSchema);
-
-export default Order;
+export default mongoose.models.Order || mongoose.model("Order", OrderSchema);

@@ -7,7 +7,6 @@ import { PiNotebookDuotone } from "react-icons/pi";
 export default function MobileBottomHeader() {
   const router = useRouter();
   const pathname = usePathname();
-  console.log("🚀 ~ MobileBottomHeader ~ pathname:", pathname);
   return (
     <div className='md:hidden block fixed bottom-0 left-0 right-0 bg-ketab-dark w-full p-3 z-10'>
       <ul className='flex w-full justify-between gap-3'>

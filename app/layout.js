@@ -1,6 +1,8 @@
-import { iranYekan } from "@/lib/font";
 import "./globals.css";
+import { iranYekan } from "@/lib/font";
 import { ToastProvider } from "@/components/ToastContext";
+import ReduxProvider from "@/components/ReduxProvider";
+import { Toaster } from "react-hot-toast";
 // app/layout.js
 
 export const metadata = {
@@ -35,12 +37,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en' dir='rtl'>
       <body className={`${iranYekan.variable} antialiased`}>
-        <div className='bg-ketab-bg'>
-          <ToastProvider >
-
-          <div className=''>{children}</div>
-          </ToastProvider>
-        </div>
+        <ReduxProvider>
+          <div className='bg-ketab-bg'>
+            <ToastProvider>
+              <div className=''>{children}</div>
+              <Toaster />
+            </ToastProvider>
+          </div>
+        </ReduxProvider>
       </body>
     </html>
   );

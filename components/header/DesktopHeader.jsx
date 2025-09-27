@@ -8,31 +8,45 @@ import BottomHeader from "./BottomHeader";
 import { useRouter } from "next/navigation";
 import { useLoggedUser } from "@/hooks/useLoggedUser";
 import UserMenu from "./UserMenu";
+import { CiShoppingCart } from "react-icons/ci";
+import CartDrawer from "./cart/CartDrawer";
+import { useSelector } from "react-redux";
 
 export default function DesktopHeader() {
   const [showMenu, setShowMenu] = useState(true);
-  const { user, loading, logout } = useLoggedUser();
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const [openCart, setOpenCart] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
+  const { user, logout } = useLoggedUser();
   const router = useRouter();
+  const cartItems = useSelector((state) => state.cart.items);
+
+  // Hydration-safe mount flag
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Hide/show header on scroll
+  useEffect(() => {
+    let lastScrollY = 0;
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
       if (currentScrollY > lastScrollY && currentScrollY > 200) {
-        // scrolling down
-        setShowMenu(false);
+        setShowMenu(false); // scrolling down
       } else {
-        // scrolling up
-        setShowMenu(true);
+        setShowMenu(true); // scrolling up
       }
 
-      setLastScrollY(currentScrollY);
+      lastScrollY = currentScrollY;
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, []);
+
+  // ✅ Avoid hydration mismatch: render nothing until mounted
+  if (!mounted) return null;
 
   return (
     <header className='relative pb-[140px] bg-ketab-dark'>
@@ -45,13 +59,32 @@ export default function DesktopHeader() {
             width={40}
             height={40}
             className='object-cover cursor-pointer'
-            onClick={()=>router.push("/")}
+            onClick={() => router.push("/")}
           />
+
           <div className='w-full'>
             <Search />
           </div>
+
+          {/* Cart */}
+          <div className='relative'>
+            {cartItems.length > 0 && (
+              <span className='text-xs text-white bg-ketab-green w-5 h-5 rounded-full flex items-center justify-center absolute -top-2 -right-2'>
+                {cartItems.length}
+              </span>
+            )}
+            <CiShoppingCart
+              onClick={() => setOpenCart(true)}
+              className='text-2xl text-ketab-gray cursor-pointer'
+            />
+          </div>
+          <CartDrawer open={openCart} onClose={() => setOpenCart(false)} />
+
+          {/* Auth */}
           {user ? (
-            <UserMenu user={user} logout={logout} />
+            <div className='flex items-center gap-3'>
+              <UserMenu user={user} logout={logout} />
+            </div>
           ) : (
             <div
               className='whitespace-nowrap'
@@ -64,7 +97,7 @@ export default function DesktopHeader() {
           )}
         </div>
 
-        {/* DesktopHeader with smooth fade+slide */}
+        {/* Bottom nav */}
         <div
           className={`transform-gpu transition-all duration-500 ease-in-out ${
             showMenu

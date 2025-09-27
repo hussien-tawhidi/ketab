@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export default function Loader() {
   return (
-    <div className='w-full h-full flex items-center justify-center'>
+    <div className='w-full h-screen flex items-center justify-center py-10'>
       <div className='relative w-20 h-12 flex items-end justify-center'>
         {/* Loader text */}
         <motion.span

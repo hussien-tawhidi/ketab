@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaFacebookF, FaRegCircleUser } from "react-icons/fa6";
 import Search from "../search/Search";
 import Input from "@/components/shared/Input";
@@ -15,10 +15,25 @@ import { useLoggedUser } from "@/hooks/useLoggedUser";
 import { IoLogInOutline, IoLogOutOutline } from "react-icons/io5";
 import Loader from "@/components/shared/Loader";
 import UserMenu from "../UserMenu";
+import CartDrawer from "../cart/CartDrawer";
+import { CiShoppingCart } from "react-icons/ci";
+import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 export default function MobileTopHeader() {
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState(false);
   const { user, loading, logout } = useLoggedUser();
+  const [openCart, setOpenCart] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  const cartItems = useSelector((item) => item.cart.items);
+
+  useEffect(() => setMounted(true), []);
+
+  if (!mounted) {
+    // Render neutral placeholder to match both SSR & client
+    return <div className='w-6 h-6' />;
+  }
   const logo = "/logo.png";
 
   if (loading) {
@@ -62,7 +77,18 @@ export default function MobileTopHeader() {
               <Search mobile handleClose={() => setSearch(!search)} />
             </div>
           )}
-          {/* <Search /> */}
+          <div className='relative'>
+            {cartItems.length > 0 && (
+              <span className='text-ketab-white bg-ketab-green w-4 h-4 rounded-full flex items-center justify-center absolute -top-2 -right-2'>
+                {cartItems.length}
+              </span>
+            )}
+            <CiShoppingCart
+              onClick={() => setOpenCart(true)}
+              className='text-2xl text-ketab-gray cursor-pointer'
+            />
+          </div>
+          <CartDrawer open={openCart} onClose={() => setOpenCart(false)} />
           {user ? (
             <UserMenu user={user} logout={logout} />
           ) : (

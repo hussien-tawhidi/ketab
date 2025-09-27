@@ -2,6 +2,7 @@ import { dbConnect } from "@/lib/db";
 import { saveUploadedFile } from "@/lib/uploadImage";
 import Book from "@/model/Book";
 import { NextResponse } from "next/server";
+import User from "@/model/User"
 export async function DELETE(request, { params }) {
   try {
     const { id } = await params;
@@ -21,20 +22,29 @@ export async function DELETE(request, { params }) {
   }
 }
 
-export async function GET(request, { params }) {
+export async function GET(req, { params }) {
+  const param=await params
   try {
-    const { id } = await params;
+    const { id } = param; // params is already an object
     await dbConnect();
-    const book = await Book.findById(id);
+
+    const book = await Book.findById(id).populate({
+      path: "reviews.user",
+      select: "name email", // only select necessary fields
+    });
+
+    if (!book) {
+      return NextResponse.json({ message: "کتاب یافت نشد" }, { status: 404 });
+    }
 
     return NextResponse.json(
-      { book, message: "Book successfully deleted" },
+      { book, message: "کتاب با موفقیت دریافت شد" },
       { status: 200 }
     );
   } catch (error) {
-    console.error("Error deleting book:", error);
+    console.error("Error fetching book:", error);
     return NextResponse.json(
-      { message: `Error in deleting book: ${error.message}` },
+      { message: `خطا در دریافت کتاب: ${error.message}` },
       { status: 500 }
     );
   }
