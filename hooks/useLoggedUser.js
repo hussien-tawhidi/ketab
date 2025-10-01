@@ -33,7 +33,7 @@ export function useLoggedUser() {
     localStorage.removeItem("token"); // remove token
     setUser(null); // reset user
     // optional redirect:
-    window.location.href = "/";
+    window.location.href = "/users/signin";
   };
   return { user, loading, logout };
 }

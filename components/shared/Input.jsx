@@ -53,7 +53,7 @@ export default function Input({
 
       {icon && (
         <span
-          className={`absolute right-3 top-1/2 -translate-y-1/2 text-2xl transition-colors
+          className={`absolute right-3 top-1/2 -translate-y-1/2 transition-colors
             ${
               isFocused || value?.length > 0
                 ? "text-ketab-green"

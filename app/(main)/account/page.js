@@ -1,7 +1,4 @@
-import React from 'react'
-
+import EmptyCard from "@/components/shared/EmptyCard";
 export default function userAccountPage() {
-  return (
-    <div>userAccountPage</div>
-  )
+  return <EmptyCard />;
 }

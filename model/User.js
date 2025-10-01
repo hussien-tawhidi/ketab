@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema(
     bio: { type: String, default: "" },
     orders: { type: [Number], default: [] },
     addresses: { type: [String], trim: true, default: [] },
-    avatar: { type: String, default: "/avatar.png" },
+    avatar: { type: String, default: "/main/avatar.png" },
     gender: { type: String },
     birthday: { type: Date },
   },

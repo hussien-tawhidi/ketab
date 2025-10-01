@@ -1,4 +1,3 @@
-
 import { NextResponse } from "next/server";
 import { getUserFromToken } from "@/lib/auth";
 
@@ -15,3 +14,5 @@ export async function GET(req) {
 
   return NextResponse.json({ success: true, user }); // returns user info directly from JWT
 }
+
+

@@ -7,13 +7,11 @@ import { useEffect, useRef, useState } from "react";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { MdKeyboardArrowDown, MdOutlineLogout } from "react-icons/md";
 
-const UserMenu = ({ user,logout }) => {
+const UserMenu = ({ user, logout }) => {
   const [showUserMenu, setShowUserMenu] = useState(false);
   const menuRef = useRef(null);
   const router = useRouter();
 
-
-  
   // Close menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -33,8 +31,18 @@ const UserMenu = ({ user,logout }) => {
           className={`p-2 text-2xl border flex items-center text-ketab-gray gap-1 ${
             showUserMenu ? "border-ketab-green" : "border-none"
           } transition`}>
-          <FaRegCircleUser />
-          <MdKeyboardArrowDown className='md:flex hidden' />
+          {user.avatar ? (
+            <Image
+              src={user.avatar}
+              alt='user image'
+              className='object-cover w-9 h-6 overflow-hidden rounded-full'
+              width={150}
+              height={150}
+            />
+          ) : (
+            <FaRegCircleUser />
+          )}
+          {/* <MdKeyboardArrowDown className='md:flex hidden' /> */}
         </button>
       </div>
       {showUserMenu && (
@@ -45,11 +53,11 @@ const UserMenu = ({ user,logout }) => {
                 className='flex items-center p-2 gap-3 cursor-pointer border-b border-ketab-gray/20'
                 onClick={() => router.push("/account")}>
                 <Image
-                  src={"/main/avatar.png"}
+                  src={user.avatar ? user.avatar : "/main/avatar.png"}
                   width={100}
                   height={100}
                   alt='avatar'
-                  className='object-cover w-10 h-auto'
+                  className='object-cover w-10 h-10 rounded-full'
                   onClick={() => setShowUserMenu(!showUserMenu)}
                 />
                 {user.name}

@@ -14,7 +14,7 @@ export async function POST(req) {
   try {
     if (!otp || (!phone && !email)) {
       return NextResponse.json(
-        { success: false, message: "OTP and phone/email are required." },
+        { success: false, message: "ایمیل یا شماره موبایل خود را وارد کنید" },
         { status: 400 }
       );
     }
@@ -25,7 +25,7 @@ export async function POST(req) {
     const record = await Otp.findOne({ contact, code: otp });
     if (!record || record.expiresAt < new Date()) {
       return NextResponse.json(
-        { success: false, message: "OTP is invalid or expired." },
+        { success: false, message: "کد درست نیست یا منقضی شده" },
         { status: 400 }
       );
     }

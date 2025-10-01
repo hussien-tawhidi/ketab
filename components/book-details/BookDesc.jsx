@@ -4,6 +4,7 @@ import Image from "next/image";
 import { MdOutlineTranslate, MdPublishedWithChanges } from "react-icons/md";
 import { PiBookOpenUser } from "react-icons/pi";
 import PriceInfo from "./PriceInfo";
+import DownloadButton from "./downloadBtn/DownloadButton";
 
 export default function BookDesc({ book }) {
   return (
@@ -50,6 +51,7 @@ export default function BookDesc({ book }) {
       <div className='md:flex-2/6 flex-1 w-full'>
         <PriceInfo book={book} />
       </div>
+      <DownloadButton bookName={book.title}/>
     </div>
   );
 }
