@@ -12,7 +12,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className='bg-ketab-light text-ketab-gray py-10 mt-10 border-t border-gray-700'>
+    <footer className='bg-ketab-dark text-ketab-gray/50 py-10 mt-10 border-t border-ketab-gray/10'>
       <div className='container mx-auto px-4 grid md:grid-cols-4 gap-8'>
         {/* Logo & Description */}
         <div>
@@ -27,7 +27,7 @@ export default function Footer() {
 
         {/* Quick Links */}
         <div>
-          <h3 className='text-lg font-semibold mb-4 text-ketab-white/80'>
+          <h3 className='text-lg font-semibold mb-4 text-ketab-gray/80'>
             دسترسی سریع
           </h3>
           <ul className='space-y-2'>
@@ -56,7 +56,7 @@ export default function Footer() {
 
         {/* Categories */}
         <div>
-          <h3 className='text-lg font-semibold mb-4 text-ketab-white/80'>
+          <h3 className='text-lg font-semibold mb-4 text-ketab-gray/80'>
             دسته‌بندی‌ها
           </h3>
           <ul className='space-y-2'>
@@ -93,7 +93,7 @@ export default function Footer() {
 
         {/* Social Media */}
         <div>
-          <h3 className='text-lg font-semibold mb-4 text-ketab-white/80'>
+          <h3 className='text-lg font-semibold mb-4 text-ketab-gray/80'>
             ما را دنبال کنید
           </h3>
           <div className='flex space-x-4 space-x-reverse'>
@@ -114,7 +114,7 @@ export default function Footer() {
       </div>
 
       {/* Copyright */}
-      <div className='mt-10 text-center text-sm text-ketab-gray border-t border-ketab-gray pt-5'>
+      <div className='mt-10 text-center text-sm text-ketab-gray/30 border-t border-ketab-gray/10 pt-5'>
         © {year || "----"} کتاب - همه حقوق محفوظ است.
       </div>
     </footer>

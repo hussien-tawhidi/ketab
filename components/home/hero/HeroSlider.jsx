@@ -47,7 +47,7 @@ function HeroSlider({ data = [] }) {
       <Slider {...settings}>
         {data.map((item, i) => (
           <Link
-            href={`/${item._id}`}
+            href={`/books/${item._id}`}
             key={i}
             className='overflow-hidden rounded-2xl'>
             <Image

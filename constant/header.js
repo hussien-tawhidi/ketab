@@ -164,7 +164,7 @@ export const menuItems = [
   {
     id: 2,
     title: "کتابخانه من",
-    href: "/account",
+    href: "/account/my-lib",
     icon: MdOutlineLibraryBooks,
   },
   {

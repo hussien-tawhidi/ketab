@@ -6,7 +6,9 @@ import LovedByAll from "@/components/home/LovedByAll";
 import MostOffer from "@/components/home/MostOffer";
 import NewBooks from "@/components/home/NewBooks";
 import SelfCare from "@/components/home/SelfCare";
+
 export default function Home() {
+
   return (
     <main className='bg-ketab-bg'>
       <Hero />
@@ -17,7 +19,7 @@ export default function Home() {
         <SelfCare />
         <MostOffer />
         <FreeBanner />
-        <AllPeopRead/>
+        <AllPeopRead />
       </div>
     </main>
   );

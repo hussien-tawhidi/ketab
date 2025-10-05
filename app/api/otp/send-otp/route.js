@@ -75,8 +75,8 @@ export async function POST(req) {
   if (email) {
     await sendEmail(
       email,
-      "OTP confirmation code",
-      `this is you OTP code dont share this with others ... ${otpCode}`
+      "کد تایید یکبار مصرف",
+      `${otpCode}`
     );
   }
   if (phone) {

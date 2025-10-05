@@ -60,7 +60,7 @@ export default function CartPage() {
         </div>
 
         {/* Order Summary */}
-        <div className='bg-ketab-gray/30 backdrop-blur-sm p-6 rounded-2xl shadow-lg h-fit'>
+        <div className='bg-ketab-dark backdrop-blur-sm p-6 rounded-2xl shadow-lg h-fit'>
           <h2 className='text-lg font-semibold mb-4'>خلاصه سفارش</h2>
 
           <div className='flex justify-between text-sm text-ketab-gray mb-2'>

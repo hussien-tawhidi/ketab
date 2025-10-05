@@ -72,7 +72,7 @@ function SliderFiveRows({
 
               return (
                 <Link
-                  href={`/${item._id}`}
+                  href={`/books/${item._id}`}
                   key={i}
                   className='overflow-hidden rounded-2xl relative px-2'>
                   {item.discountPrice && (

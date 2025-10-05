@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { FaRegCircleUser } from "react-icons/fa6";
-import { MdKeyboardArrowDown, MdOutlineLogout } from "react-icons/md";
+import {  MdOutlineLogout } from "react-icons/md";
 
 const UserMenu = ({ user, logout }) => {
   const [showUserMenu, setShowUserMenu] = useState(false);
@@ -22,20 +22,30 @@ const UserMenu = ({ user, logout }) => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  const handleUser = () => {
+    setShowUserMenu(!showUserMenu);
+    router.push("/account");
+  };
+  const handleMenuRoute = (link) => {
+    setShowUserMenu(!showUserMenu);
+    router.push(link);
+  };
+
   return (
     <div className='relative' ref={menuRef}>
       <div
         className='whitespace-nowrap rounded overflow-hidden'
         onClick={() => setShowUserMenu(!showUserMenu)}>
         <button
-          className={`p-2 text-2xl border flex items-center text-ketab-gray gap-1 ${
+          className={`text-2xl border rounded-full text-ketab-gray ${
             showUserMenu ? "border-ketab-green" : "border-none"
           } transition`}>
           {user.avatar ? (
             <Image
               src={user.avatar}
               alt='user image'
-              className='object-cover w-9 h-6 overflow-hidden rounded-full'
+              className='object-cover w-9 h-7 overflow-hidden rounded-full'
               width={150}
               height={150}
             />
@@ -51,7 +61,7 @@ const UserMenu = ({ user, logout }) => {
             <ul>
               <li
                 className='flex items-center p-2 gap-3 cursor-pointer border-b border-ketab-gray/20'
-                onClick={() => router.push("/account")}>
+                onClick={handleUser}>
                 <Image
                   src={user.avatar ? user.avatar : "/main/avatar.png"}
                   width={100}
@@ -65,20 +75,15 @@ const UserMenu = ({ user, logout }) => {
               {menuItems.map((item) => (
                 <li key={item.id} className='py-1 last:border-b-0'>
                   <button
-                    onClick={() => setShowUserMenu(!showUserMenu)}
-                    className={`w-full flex items-center hover:text-ketab-green justify-between p-2 text-right transition-colors`}>
+                    onClick={() => handleMenuRoute(item.href)}
+                    className={`w-full flex items-center hover:text-ketab-green cursor-pointer justify-between p-2 text-right transition-colors`}>
                     <div className='flex items-center w-full'>
                       <span
                         className={`ml-3 text-ketab-green ${item.isLogout}`}>
                         {item.icon && <item.icon />}
                       </span>
                       <div className='flex justify-between w-full'>
-                        <p className='text-sm'>{item.title}</p>
-                        {item.subtitle && (
-                          <div className='text-xs text-ketab-gray mt-1 border-r border-ketab-gray/50 pr-2'>
-                            {item.subtitle}
-                          </div>
-                        )}
+                        <p className='text-sm text-ketab-gray'>{item.title}</p>
                       </div>
                     </div>
                   </button>
