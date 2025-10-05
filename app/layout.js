@@ -9,6 +9,9 @@ export const metadata = {
   title: "خرید و فروش کتاب | BookStore",
   description: "خرید و فروش آنلاین کتاب، رمان و کتاب صوتی با بهترین قیمت",
   keywords: ["کتاب", "خرید کتاب", "کتاب صوتی", "رمان", "فروش کتاب"],
+  icons: {
+    icon: "/logo.png", // path relative to /public
+  },
   openGraph: {
     title: "خرید و فروش کتاب",
     description: "بزرگترین فروشگاه آنلاین کتاب و کتاب صوتی",
